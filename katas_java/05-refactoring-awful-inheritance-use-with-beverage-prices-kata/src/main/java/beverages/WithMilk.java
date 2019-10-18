@@ -1,9 +1,8 @@
 package beverages;
 
-public class WithMilk implements Beverage {
-    Beverage rawBeverage;
-    public  WithMilk(Beverage beverage) {
-        rawBeverage = beverage;
+public class WithMilk extends BeverageDecorator implements Beverage {
+    public WithMilk(Beverage beverage) {
+        super(beverage);
     }
     @Override
     public double price() {

@@ -1,9 +1,8 @@
 package beverages;
 
-public class WithCream implements Beverage {
-    Beverage rawBeverage;
+public class WithCream extends BeverageDecorator implements Beverage {
     public WithCream(Beverage beverage) {
-        rawBeverage = beverage;
+        super(beverage);
     }
     @Override
     public double price() {
