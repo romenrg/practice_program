@@ -49,4 +49,12 @@ public class BeveragesPricingTest {
         HotChocolateWithCream hotChocolateWithCream = new HotChocolateWithCream();
         assertThat(hotChocolateWithCream.price(),  is(closeTo(1.60, 0.001)));
     }
+
+
+    // New tests
+    @Test
+    public void computes_tea_with_milk_price_using_decorator() {
+        Beverage teaWithMilk = new WithMilk(new Tea());
+        assertThat(teaWithMilk.price(), is(closeTo(1.60, 0.001)));
+    }
 }
