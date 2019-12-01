@@ -50,8 +50,7 @@ public class BeveragesPricingTest {
         assertThat(hotChocolateWithCream.price(),  is(closeTo(1.60, 0.001)));
     }
 
-
-    // New tests
+    // New tests for decorators
     @Test
     public void computes_tea_with_milk_price_using_decorator() {
         Beverage teaWithMilk = new WithMilk(new Tea());
@@ -62,5 +61,18 @@ public class BeveragesPricingTest {
     public void computes_hot_chocolate_with_cream_price_using_decorator() {
         Beverage hotChocolateWithCream = new WithCream(new HotChocolate());
         assertThat(hotChocolateWithCream.price(),  is(closeTo(1.60, 0.001)));
+    }
+
+    // New tests for restrictions
+    @Test
+    public void can_only_add_milk_once_to_tea() {
+        Beverage teaWithMilk = new WithMilk(new WithMilk(new Tea()));
+        assertThat(teaWithMilk.price(), is(closeTo(1.60, 0.001)));
+    }
+
+    @Test
+    public void cannot_add_cream_to_tea() {
+        Beverage teaWithCream = new WithCream(new Tea());
+        assertThat(teaWithCream.price(), is(closeTo(0, 0.001)));
     }
 }
